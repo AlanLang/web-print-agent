@@ -7,6 +7,7 @@
         xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
         ResizeMode="CanMinimize"
         mc:Ignorable="d"
+        Icon="print.ico"
         Title="打印服务" Height="450" Width="800">
     <Grid>
         <Button Content="Button" HorizontalAlignment="Left" Margin="527,134,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
