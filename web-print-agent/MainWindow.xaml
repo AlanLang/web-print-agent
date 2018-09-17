@@ -8,7 +8,7 @@
         ResizeMode="CanMinimize"
         mc:Ignorable="d"
         Icon="print.ico"
-        Title="打印服务" Height="450" Width="800">
+        Title="打印服务" Height="450" Width="800" StateChanged="Window_StateChanged" Closing="MetroWindow_Closing">
     <Grid>
         <Button Content="Button" HorizontalAlignment="Left" Margin="527,134,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
