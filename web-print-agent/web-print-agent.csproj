@@ -65,6 +65,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Service\MyLogService.cs" />
+    <Compile Include="Service\Socket\ISocketService.cs" />
+    <Compile Include="Service\Socket\MySocketService.cs" />
+    <Compile Include="Service\Socket\SocketService.cs" />
+    <Compile Include="Service\Socket\SocketBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

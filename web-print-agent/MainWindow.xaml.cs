@@ -1,5 +1,4 @@
-﻿using Fleck;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -15,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using web_print_agent.Service;
+using web_print_agent.Service.Socket;
 
 namespace web_print_agent
 {
@@ -23,17 +23,21 @@ namespace web_print_agent
     /// </summary>
     public partial class MainWindow : Window
     {
+        SocketBase socketBase;
+        MySocketService mySocketServer;
         public MainWindow()
         {
             InitializeComponent();
             MyLogService.Info("打印代理服务已启动");
-            var server = new WebSocketServer("ws://0.0.0.0:9401");
-            server.RestartAfterListenError = true;
-            server.Start(socket =>
-            {
-                socket.OnMessage = message => socket.Send("接收到消息"+message);
-                //...use as normal
-            });
+            mySocketServer = new MySocketService();
+            socketBase = new SocketBase(mySocketServer);
+            socketBase.start();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mySocketServer.sendAll("发送测试");
+            int i = socketBase.connectNum;
         }
     }
 }
