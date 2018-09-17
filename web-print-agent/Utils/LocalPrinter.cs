@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Runtime.InteropServices;
 
-namespace web_print_agent.Service
+namespace web_print_agent.Utils
 {
     public class LocalPrinter
     {
