@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:web_print_agent"
+        ResizeMode="CanMinimize"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="打印服务" Height="450" Width="800">
     <Grid>
         <Button Content="Button" HorizontalAlignment="Left" Margin="527,134,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
 
