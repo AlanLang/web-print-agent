@@ -46,7 +46,7 @@ namespace web_print_agent.Utils
             System.Windows.Forms.MenuItem open = new System.Windows.Forms.MenuItem("打开");
             open.Click += new EventHandler(ShowWindow);
             //右键菜单--退出菜单项
-            System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("关闭");
+            System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("退出");
             exit.Click += new EventHandler(CloseWindow);
             //关联托盘控件
             System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { open, exit };
