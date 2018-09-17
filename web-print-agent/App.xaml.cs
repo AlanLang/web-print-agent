@@ -17,6 +17,7 @@ namespace web_print_agent
         protected override void OnStartup(StartupEventArgs e)
         {
             log4net.Config.XmlConfigurator.Configure();
+           
             base.OnStartup(e);
         }
         protected override void OnExit(ExitEventArgs e)
