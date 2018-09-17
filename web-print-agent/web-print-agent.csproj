@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Arthas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fee4b65875c25912, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfUI.1.0.0\lib\Arthas.dll</HintPath>
+    </Reference>
     <Reference Include="Fleck, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fleck.1.0.3\lib\net45\Fleck.dll</HintPath>
     </Reference>
