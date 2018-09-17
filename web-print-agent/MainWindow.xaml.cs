@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using web_print_agent.Service;
 
 namespace web_print_agent
 {
@@ -23,6 +24,7 @@ namespace web_print_agent
         public MainWindow()
         {
             InitializeComponent();
+            MyLogService.Info("打印代理服务已启动");
         }
     }
 }
