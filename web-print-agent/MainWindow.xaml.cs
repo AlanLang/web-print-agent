@@ -1,4 +1,4 @@
-﻿using NetworkSocket.WebSocket;
+﻿using Fleck;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +27,13 @@ namespace web_print_agent
         {
             InitializeComponent();
             MyLogService.Info("打印代理服务已启动");
+            var server = new WebSocketServer("ws://0.0.0.0:9401");
+            server.RestartAfterListenError = true;
+            server.Start(socket =>
+            {
+                socket.OnMessage = message => socket.Send("接收到消息"+message);
+                //...use as normal
+            });
         }
     }
 }
