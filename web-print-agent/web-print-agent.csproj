@@ -46,6 +46,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -64,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Service\LocalPrinter.cs" />
     <Compile Include="Service\MyLogService.cs" />
     <Compile Include="Service\Socket\ISocketService.cs" />
     <Compile Include="Service\Socket\MySocketService.cs" />

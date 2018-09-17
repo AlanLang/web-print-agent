@@ -32,6 +32,7 @@ namespace web_print_agent
             mySocketServer = new MySocketService();
             socketBase = new SocketBase(mySocketServer);
             socketBase.start();
+            var pts =  LocalPrinter.GetLocalPrinters();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
