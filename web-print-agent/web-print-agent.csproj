@@ -74,6 +74,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utils\Global.cs" />
     <Compile Include="Utils\LocalPrinter.cs" />
     <Compile Include="Service\MyLogService.cs" />
     <Compile Include="Service\Socket\ISocketService.cs" />

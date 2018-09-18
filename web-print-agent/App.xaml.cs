@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using web_print_agent.Utils;
@@ -17,7 +19,18 @@ namespace web_print_agent
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            int i = e.Args.Length;
+            // Get Reference to the current Process
+            Process thisProc = Process.GetCurrentProcess();
+            // Check how many total processes have the same name as the current one
+            if (Process.GetProcessesByName(thisProc.ProcessName).Length > 1)
+            {
+                // If ther is more than one, than it is already running.
+                MessageBox.Show("已有一个程序正在运行");
+                Application.Current.Shutdown();
+                return;
+            }
+            else { Global.canSatrt = true; }
+            
             log4net.Config.XmlConfigurator.Configure();
 
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
@@ -25,9 +38,16 @@ namespace web_print_agent
 
             base.OnStartup(e);
         }
+
         protected override void OnExit(ExitEventArgs e)
         {
             base.OnExit(e);
+            if (!Global.canClose) {
+                Process m_Process = new Process();
+                m_Process.StartInfo.FileName = Process.GetCurrentProcess().MainModule.FileName;
+                m_Process.StartInfo.Arguments = "admin";
+                m_Process.Start();
+            }
         }
 
         //主线程异常
