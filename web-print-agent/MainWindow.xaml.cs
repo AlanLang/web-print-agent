@@ -18,6 +18,7 @@ using web_print_agent.Service;
 using web_print_agent.Service.Socket;
 using web_print_agent.Utils;
 using System.Threading;
+using Codeplex.Data;
 
 namespace web_print_agent
 {
@@ -49,6 +50,11 @@ namespace web_print_agent
             var pts = LocalPrinter.GetLocalPrinters();
             MyLogService.Info("打印服务已启动");
             MyLogService.Print("打印日志测试");
+
+            var json = DynamicJson.Parse(@"{""foo"":""json"", ""bar"":100, ""nest"":{ ""foobar"":true } }");
+
+            var r1 = json.foo; // "json" - string类型
+            MyLogService.Print(r1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
