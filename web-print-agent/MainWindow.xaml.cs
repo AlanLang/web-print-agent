@@ -34,18 +34,21 @@ namespace web_print_agent
             InitializeComponent();
             if (Global.canSatrt)
             {
-                windowsMin = new WindowsMin(this);
-                MyLogService.Info("打印代理服务已启动");
-                mySocketServer = new MySocketService();
-                socketBase = new SocketBase(mySocketServer);
-                socketBase.start();
-                var pts = LocalPrinter.GetLocalPrinters();
-                MyLogService.Info("打印服务已启动");
+                init();
             }
         }
 
-
-
+        private void init()
+        {
+            windowsMin = new WindowsMin(this);// 设置最小化到任务栏
+            //配置socket服务
+            mySocketServer = new MySocketService();
+            socketBase = new SocketBase(mySocketServer);
+            socketBase.start();
+            //获取打印机信息
+            var pts = LocalPrinter.GetLocalPrinters();
+            MyLogService.Info("打印服务已启动");
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -61,7 +64,6 @@ namespace web_print_agent
             Global.canClose = true;
             windowsMin.hide();
         }
-
 
         private void Window_StateChanged(object sender, EventArgs e)
         {
