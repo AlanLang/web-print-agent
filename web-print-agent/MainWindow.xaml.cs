@@ -48,6 +48,7 @@ namespace web_print_agent
             //获取打印机信息
             var pts = LocalPrinter.GetLocalPrinters();
             MyLogService.Info("打印服务已启动");
+            MyLogService.Print("打印日志测试");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
