@@ -21,7 +21,30 @@ web->代理
 ```
 {
   id:1537148688,  // 唯一id，使用当前时间戳
-  data:[],//打印指令
+  data:{
+    page:[20,20],// 页面尺寸，高/宽
+    content:
+    [
+      {
+        type:"text",
+        value:"打印的内容",
+        position:[x,y],
+        size:[a,b],// 字号，旋转角度
+      },
+      {
+        type:"qrcode",
+        value:"打印的内容",
+        position:[x,y],
+        size:[a,b],// 高/宽
+      },
+      {
+        type:"barcode",
+        value:"打印的内容",
+        position:[x,y],
+        size:[a,b],// 高/宽
+      }
+    ]
+  }
 }
 ```
 代理->web
