@@ -11,7 +11,8 @@ namespace web_print_agent.Utils
         //获取本机默认打印机名称
         public static String DefaultPrinter()
         {
-            return fPrintDocument.PrinterSettings.PrinterName;
+            string printerName = fPrintDocument.PrinterSettings.PrinterName;
+            return string.IsNullOrWhiteSpace(printerName) ? "未指定" : printerName;
         }
         public static List<String> GetLocalPrinters()
         {
