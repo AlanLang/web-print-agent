@@ -17,6 +17,7 @@ namespace web_print_agent.Utils
             setMin();
             this.windows = windows;
             wsl = this.windows.WindowState;
+            this.windows.Hide();//启动后直接最小化
         }
 
         public void hide()
@@ -65,6 +66,7 @@ namespace web_print_agent.Utils
 
         private void CloseWindow(object sender, EventArgs e)
         {
+            Global.canClose = true;
             System.Windows.Application.Current.Shutdown();
         }
     }
