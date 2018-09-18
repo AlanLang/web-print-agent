@@ -15,33 +15,34 @@
 * 打印条形码，二维码
 * 打印图片
 
-## 通讯协议
+## 指令示例
 使用JSON格式
+类型：text/qrcoe/barcode/line
 web->代理
 ```
 {
-  id:1537148688,  // 唯一id，使用当前时间戳
-  data:{
-    page:[20,20],// 页面尺寸，高/宽
-    content:
+  "id":1537148688,  // 唯一id，使用当前时间戳
+  "data":{
+    "page":{
+        "width":190,
+        "height":80
+      },
+    "content":
     [
       {
-        type:"text",
-        value:"打印的内容",
-        position:[x,y],
-        size:[a,b],// 字号，旋转角度
+        "type":"text",
+        "value":"打印的内容",
+        "size":20,
+        "x":40,
+        "y":5
       },
       {
-        type:"qrcode",
-        value:"打印的内容",
-        position:[x,y],
-        size:[a,b],// 高/宽
-      },
-      {
-        type:"barcode",
-        value:"打印的内容",
-        position:[x,y],
-        size:[a,b],// 高/宽
+        "type":"qrcode",
+        "value":"打印的内容",
+        "width":70,
+        "height":70,
+        "x":55,
+        "y":15
       }
     ]
   }
