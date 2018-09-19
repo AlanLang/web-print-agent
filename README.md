@@ -21,31 +21,29 @@
 web->代理
 ```
 {
-  "id":1537148688,  // 唯一id，使用当前时间戳
-  "data":{
-    "page":{
-        "width":190,
-        "height":80
-      },
-    "content":
-    [
-      {
-        "type":"text",
-        "value":"打印的内容",
-        "size":20,
-        "x":40,
-        "y":5
-      },
-      {
-        "type":"qrcode",
-        "value":"打印的内容",
-        "width":70,
-        "height":70,
-        "x":55,
-        "y":15
-      }
-    ]
-  }
+  "id":1537148688,
+  "page":{
+      "width":190,
+      "height":80
+  },
+  "content":
+  [
+    {
+      "type":"text",
+      "text":"打印的内容",
+      "size":20,
+      "x":40,
+      "y":5
+    },
+    {
+      "type":"qrcode",
+      "text":"打印的内容",
+      "width":70,
+      "height":70,
+      "x":55,
+      "y":15
+    }
+  ]
 }
 ```
 代理->web
