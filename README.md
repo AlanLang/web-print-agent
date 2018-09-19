@@ -56,33 +56,6 @@ web->代理
   msg:"返回的消息"
 }
 ```
-打印内容
-```
-{
-  page:[20,20],// 页面尺寸，高/宽
-  data:
-  [
-    {
-      type:"text",
-      value:"打印的内容",
-      position:[x,y],
-      size:[a,b],// 字号，旋转角度
-    },
-    {
-      type:"qrcode",
-      value:"打印的内容",
-      position:[x,y],
-      size:[a,b],// 高/宽
-    },
-    {
-      type:"barcode",
-      value:"打印的内容",
-      position:[x,y],
-      size:[a,b],// 高/宽
-    }
-  ]
-}
-```
 
 ## 注意
 有几个依赖来自于本人自己的NuGet服务，需要的请留言。
