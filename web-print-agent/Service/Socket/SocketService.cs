@@ -26,7 +26,7 @@ namespace web_print_agent.Service.Socket
 
         public virtual void OnMessage(string msg, IWebSocketConnection client)
         {
-            MyLogService.Print("接收到打印指令：" + msg);
+
         }
 
         public void sendAll(string msg)

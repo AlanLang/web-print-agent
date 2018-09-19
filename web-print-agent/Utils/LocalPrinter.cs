@@ -8,16 +8,17 @@ namespace web_print_agent.Utils
     public class LocalPrinter
     {
         private static PrintDocument fPrintDocument = new PrintDocument();
+        public const string NOPRINTER = "未设置打印机";
         //获取本机默认打印机名称
-        public static String DefaultPrinter()
+        public static String GetDefaultPrinter()
         {
             string printerName = fPrintDocument.PrinterSettings.PrinterName;
-            return string.IsNullOrWhiteSpace(printerName) ? "未指定" : printerName;
+            return string.IsNullOrWhiteSpace(printerName) ? NOPRINTER : printerName;
         }
         public static List<String> GetLocalPrinters()
         {
             List<String> fPrinters = new List<String>();
-            fPrinters.Add(DefaultPrinter()); //默认打印机始终出现在列表的第一项
+            fPrinters.Add(GetDefaultPrinter()); //默认打印机始终出现在列表的第一项
             foreach (String fPrinterName in PrinterSettings.InstalledPrinters)
             {
                 if (!fPrinters.Contains(fPrinterName))

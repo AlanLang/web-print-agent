@@ -8,9 +8,18 @@
         ResizeMode="CanMinimize"
         mc:Ignorable="d"
         Icon="print.ico"
-        Title="打印服务" Height="450" Width="800" StateChanged="Window_StateChanged" Closing="MetroWindow_Closing">
+        Title="打印服务" Height="140" Width="350" StateChanged="Window_StateChanged" Closing="MetroWindow_Closing">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="527,134,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <GroupBox Header="打印机设置" HorizontalAlignment="Left" Height="70" Margin="10,10,0,0" VerticalAlignment="Top" Width="324">
+            <Grid>
+                <Label Content="默认打印机：" HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"/>
+                <ComboBox Name="PrintList" HorizontalAlignment="Left" Margin="85,10,0,0" VerticalAlignment="Top" Width="217" SelectionChanged="PrintList_SelectionChanged" />
 
+            </Grid>
+        </GroupBox>
+
+        <Grid VerticalAlignment="Bottom" Height="25" Margin="0,0,0,1">
+            <Label Name="SystemMsg" Content="正在运行" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,6,0" />
+        </Grid>
     </Grid>
 </Metro:MetroWindow>

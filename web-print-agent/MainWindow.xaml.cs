@@ -47,28 +47,54 @@ namespace web_print_agent
             socketBase = new SocketBase(mySocketServer);
             socketBase.start();
             //获取打印机信息
-            var pts = LocalPrinter.GetLocalPrinters();
+            var printers = LocalPrinter.GetLocalPrinters();
+            PrintList.ItemsSource = printers;
+            PrintList.SelectedIndex = 0;
             MyLogService.Info("打印服务已启动");
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            mySocketServer.sendAll("发送测试");
-            int i = socketBase.connectNum;
-            string s = "";
-            s.Substring(1, 23);
-
         }
 
         private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Global.canClose = true;
-            windowsMin.hide();
+            e.Cancel = true;
+            this.Hide();
         }
 
         private void Window_StateChanged(object sender, EventArgs e)
         {
             windowsMin.onStateChange();
+        }
+
+        private void PrintList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            string selectedEmployee = (string)comboBox.SelectedItem;
+            if (!selectedEmployee.Equals(LocalPrinter.GetDefaultPrinter()))
+            {
+                try
+                {
+                    LocalPrinter.SetDefaultPrinter(selectedEmployee);
+                    setMsg(Global.PRINTSETSUCESS+selectedEmployee);
+                }
+                catch (Exception ex)
+                {
+                    setMsg(ex.Message);
+                }
+
+            }
+        }
+
+        private void setMsg(string msg)
+        {
+            SystemMsg.Content = msg;
+            Thread t = new Thread(() =>
+            {
+                Thread.Sleep(3000);//次线程休眠3秒
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    SystemMsg.Content = Global.SYSISRUN;
+                }));
+            });
+            t.Start();
         }
     }
 }
