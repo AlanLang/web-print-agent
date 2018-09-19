@@ -17,9 +17,11 @@
 * 打印图片
 
 ## 指令示例
-使用JSON格式
-类型：text/qrcoe/barcode/line
-单位：毫米
+* JSON格式
+* 类型：text/qrcoe/barcode/line
+* 单位：毫米
+* 文字换行手动使用`\r\n`
+
 web->代理
 ```
 {
