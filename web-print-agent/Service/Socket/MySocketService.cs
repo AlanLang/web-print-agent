@@ -16,7 +16,7 @@ namespace web_print_agent.Service.Socket
         }
         public override void OnError(Exception ex)
         {
-            MyLogService.Error("socket调用发生错误：" + ex.Message);
+            MyLogService.Error("socket调用发生错误：" + ex.Message,ex);
         }
 
         public override void OnMessage(string msg, IWebSocketConnection client)

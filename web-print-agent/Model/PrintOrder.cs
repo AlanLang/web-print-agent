@@ -15,8 +15,8 @@ namespace web_print_agent.Model
 
     public class PrintPage
     {
-        public double width { get; set; }
-        public double height { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
     }
 
     public class PrintContent
