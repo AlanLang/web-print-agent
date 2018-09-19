@@ -19,13 +19,14 @@
 ## 指令示例
 使用JSON格式
 类型：text/qrcoe/barcode/line
+单位：毫米
 web->代理
 ```
 {
   "id":1537148688,
   "page":{
-      "width":190,
-      "height":80
+      "width":210,
+      "height":297
   },
   "content":
   [
