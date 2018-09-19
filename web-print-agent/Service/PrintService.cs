@@ -13,11 +13,11 @@ namespace web_print_agent.Service
     public class PrintService
     {
         protected dynamic printOrder;
-        protected string err;
+        protected string msg;
         protected PrintDocument pd;
         protected string fontFamily = "正常";
         protected int Pixel;
-        public string Err { get { return err; } }
+        public string Msg { get { return msg; } }
 
         public bool SetPrintOrder(string printOrder)
         {
@@ -29,7 +29,7 @@ namespace web_print_agent.Service
             }
             catch (Exception ex)
             {
-                this.err = ex.Message;
+                this.msg = ex.Message;
                 MyLogService.Error("反序列化打印指令出错", ex);
                 return false;
             }
@@ -40,10 +40,29 @@ namespace web_print_agent.Service
             Double id = printOrder.id;
             pd = new PrintDocument();
             this.setPageSize();
-            Pixel = pd.DefaultPageSettings.PrinterResolution.X;// 获取分辨率
-            pd.PrintPage += pd_PrintPage;
-            pd.PrintController = new StandardPrintController();             //去掉打印弹出框
-            pd.Print();
+            Model.PrintRe printRe = new Model.PrintRe();
+            printRe.id = id;
+            try
+            {
+                Pixel = pd.DefaultPageSettings.PrinterResolution.X;// 获取分辨率
+                pd.PrintPage += pd_PrintPage;
+                pd.PrintController = new StandardPrintController();             //去掉打印弹出框
+                pd.Print();
+                printRe.code = 0;
+                printRe.msg = "打印成功";
+            }
+            catch (Exception ex)
+            {
+                printRe.code = 1;
+                printRe.msg = ex.Message;
+                MyLogService.Error("解析打印指令出错", ex);
+                return false;
+            }
+            finally {
+                this.msg = DynamicJson.Serialize(printRe);
+                MyLogService.Print(this.msg);
+            }
+
             return true;
         }
         void pd_PrintPage(object sender, PrintPageEventArgs e)
