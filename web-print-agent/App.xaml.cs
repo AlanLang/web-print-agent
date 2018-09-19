@@ -26,6 +26,7 @@ namespace web_print_agent
             {
                 // If ther is more than one, than it is already running.
                 MessageBox.Show("已有一个程序正在运行");
+                Global.canClose = true;
                 Application.Current.Shutdown();
                 return;
             }
