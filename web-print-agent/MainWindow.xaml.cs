@@ -42,14 +42,14 @@ namespace web_print_agent
         private void init()
         {
             windowsMin = new WindowsMin(this);// 设置最小化到任务栏
+            PrintService pt = new PrintService();
             //配置socket服务
-            mySocketServer = new MySocketService();
+            mySocketServer = new MySocketService(pt);
             socketBase = new SocketBase(mySocketServer);
             socketBase.start();
             //获取打印机信息
             var pts = LocalPrinter.GetLocalPrinters();
             MyLogService.Info("打印服务已启动");
-            MyLogService.Print("打印日志测试");
 
             var json = DynamicJson.Parse(@"{""foo"":""json"", ""bar"":100, ""nest"":{ ""foobar"":true } }");
 

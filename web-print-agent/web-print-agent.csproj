@@ -76,6 +76,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DynamicJson.cs" />
+    <Compile Include="Model\PrintOrder.cs" />
+    <Compile Include="Service\PrintService.cs" />
     <Compile Include="Utils\Global.cs" />
     <Compile Include="Utils\LocalPrinter.cs" />
     <Compile Include="Service\MyLogService.cs" />
@@ -132,8 +134,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
