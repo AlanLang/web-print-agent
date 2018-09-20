@@ -25,6 +25,7 @@ namespace web_print_agent.Service
         {
             try
             {
+                new Utils.Notification().Open("打印通知", "已接到打印指令，正在打印");
                 this.printOrder = DynamicJson.Parse(printOrder);
                 MyLogService.Print(printOrder);
                 return true;
@@ -33,6 +34,7 @@ namespace web_print_agent.Service
             {
                 this.msg = ex.Message;
                 MyLogService.Error("反序列化打印指令出错", ex);
+                new Utils.Notification().Open("打印通知", "反序列化打印指令出错");
                 return false;
             }
 
@@ -51,6 +53,7 @@ namespace web_print_agent.Service
                 pd.PrintController = new StandardPrintController();             //去掉打印弹出框
                 pd.Print();
                 printRe.code = 0;
+                new Utils.Notification().Open("打印通知", "打印完成");
                 printRe.msg = "打印成功";
             }
             catch (Exception ex)
@@ -58,6 +61,7 @@ namespace web_print_agent.Service
                 printRe.code = 1;
                 printRe.msg = ex.Message;
                 MyLogService.Error("解析打印指令出错", ex);
+                new Utils.Notification().Open("打印通知", "解析打印指令出错");
                 return false;
             }
             finally {

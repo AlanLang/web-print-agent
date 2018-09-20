@@ -21,10 +21,15 @@ namespace web_print_agent.Service.Socket
 
         public override void OnMessage(string msg, IWebSocketConnection client)
         {
-            printService.SetPrintOrder(msg);
-            bool re = printService.TestPrintOrder();
-            client.Send(printService.Msg);
-            base.OnMessage(msg, client);
+            if (printService.SetPrintOrder(msg))
+            {
+                bool re = printService.TestPrintOrder();
+                client.Send(printService.Msg);
+                base.OnMessage(msg, client);
+            }
+            else {
+                client.Send(printService.Msg);
+            }
         }
     }
 }
