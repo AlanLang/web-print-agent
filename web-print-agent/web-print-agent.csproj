@@ -76,7 +76,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DynamicJson.cs" />
-    <Compile Include="Model\PrintOrder.cs" />
     <Compile Include="Model\PrintRe.cs" />
     <Compile Include="Service\PrintService.cs" />
     <Compile Include="Utils\Global.cs" />
