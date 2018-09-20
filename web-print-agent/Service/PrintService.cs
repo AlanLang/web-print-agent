@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,6 +96,9 @@ namespace web_print_agent.Service
                     case "barcode":
                         printBarCode(g, item, BarcodeFormat.CODE_128);
                         break;
+                    case "image":
+                        printImage(g, item);
+                        break;
                     default:
                         MyLogService.Print("无法识别的打印命令：" + type);
                         break;
@@ -102,7 +106,20 @@ namespace web_print_agent.Service
             }
         }
 
-
+        private void printImage(Graphics g, dynamic item)
+        {
+            string text = item.text;
+            float width = toInches(item.width);
+            float height = toInches(item.height);
+            float x = toInches(item.x);
+            float y = toInches(item.y);
+            System.Net.WebRequest webreq = System.Net.WebRequest.Create(text);
+            System.Net.WebResponse webres = webreq.GetResponse();
+            Stream stream = webres.GetResponseStream();
+            Image image = Image.FromStream(stream);
+            stream.Close();
+            g.DrawImage(image, x, y, width, height);
+        }
 
         /// <summary>
         /// 打印二维码
