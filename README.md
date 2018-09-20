@@ -18,7 +18,7 @@
 
 ## 指令示例
 * JSON格式
-* 类型：text/qrcoe/barcode/line
+* 类型：text/qrcoe/datamatrix/barcode/line
 * 单位：毫米
 * 文字换行手动使用`\r\n`
 
@@ -34,24 +34,24 @@ web->代理
   [
     {
       "type":"text",
-      "text":"打印的内容",
+      "text":"改需求推荐使用支付宝",
       "size":20,
-      "x":40,
-      "y":5
+      "x":65,
+      "y":100
     },
     {
       "type":"line",
-      "x1":1,
-      "y1":1,
-      "x2":1,
-      "y2":5
+      "x1":0,
+      "y1":130,
+      "x2":210,
+      "y2":130
     },
     {
       "type":"qrcode",
-      "text":"打印的内容",
+      "text":"https://qr.alipay.com/tsx04136zdm6mxp7jvv4s2f",
       "width":70,
       "height":70,
-      "x":55,
+      "x":70,
       "y":15
     }
   ]

@@ -34,6 +34,7 @@ namespace web_print_agent.Utils
             }
         }
 
+
         private void setMin()
         {
             this.notifyIcon = new System.Windows.Forms.NotifyIcon();
