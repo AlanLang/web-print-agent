@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>打印测试</title>
+</head>
+<body>
+<button onclick="printMsg()">打印</button>
+<script type="text/javascript">
+  websocket = new WebSocket('ws://127.0.0.1:9401');
+  websocket.onopen = function (evnt) {
+    console.log("服务器连接成功");
+  };
+  websocket.onmessage = function (evnt) {
+    console.log("接收到信息",evnt)
+  };
+
+  websocket.onerror = function (evnt) {
+      console.log("websocket异常",evnt);
+  };
+  websocket.onclose = function (evnt) {
+    console.log("与服务器断开");
+  }
+  function printMsg(){
+    var pringOrder = {"id":1537148688,"page":{"width":210,"height":297},"content":[{"type":"text","text":"改需求推荐使用支付宝","size":20,"x":65,"y":100},{"type":"line","x1":0,"y1":130,"x2":210,"y2":130},{"type":"qrcode","text":"https://qr.alipay.com/tsx04136zdm6mxp7jvv4s2f","width":70,"height":70,"x":70,"y":15}]};
+      websocket.send(JSON.stringify(pringOrder));
+  }
+</script>
+</body>
+</html>
