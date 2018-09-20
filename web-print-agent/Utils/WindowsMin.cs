@@ -54,7 +54,7 @@ namespace web_print_agent.Utils
             System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { open, exit };
             notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(childen);
 
-            notifyIcon.MouseDoubleClick += ShowWindow;
+            notifyIcon.MouseClick += ShowWindow;
             this.notifyIcon.ShowBalloonTip(1000);
         }
 
