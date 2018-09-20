@@ -1,5 +1,4 @@
 ﻿using Codeplex.Data;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -7,6 +6,9 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZXing;
+using ZXing.Common;
+using ZXing.QrCode;
 
 namespace web_print_agent.Service
 {
@@ -72,7 +74,7 @@ namespace web_print_agent.Service
             foreach (var item in content)
             {
                 string type = item.type;
-                switch (type)
+                switch (type.ToLower())
                 {
                     case "text":
                         printText(g,item);
@@ -80,12 +82,44 @@ namespace web_print_agent.Service
                     case "line":
                         printLine(g, item);
                         break;
+                    case "qrcode":
+                        printBarCode(g, item, BarcodeFormat.QR_CODE);
+                        break;
+                    case "datamatrix":
+                        printBarCode(g, item, BarcodeFormat.DATA_MATRIX);
+                        break;
+                    case "barcode":
+                        printBarCode(g, item, BarcodeFormat.CODE_128);
+                        break;
                     default:
+                        MyLogService.Print("无法识别的打印命令：" + type);
                         break;
                 }
             }
         }
 
+
+
+        /// <summary>
+        /// 打印二维码
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="item"></param>
+        private void printBarCode(Graphics g, dynamic item, BarcodeFormat format)
+        {
+            float width = toInches(item.width);
+            float height = toInches(item.height);
+            float x = toInches(item.x);
+            float y = toInches(item.y);
+            string text = item.text;
+            g.DrawImage(newBarcode(format, text,(int)width,(int)height),x, y, width, height);
+        }
+
+        /// <summary>
+        /// 打印线条
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="item"></param>
         private void printLine(Graphics g, dynamic item)
         {
             float x1 = toInches(item.x1);
@@ -96,6 +130,11 @@ namespace web_print_agent.Service
             g.DrawLine(pen, x1,y1,x2,y2);
         }
 
+        /// <summary>
+        /// 打印文字
+        /// </summary>
+        /// <param name="g"></param>
+        /// <param name="item"></param>
         private void printText(Graphics g, dynamic item)
         {
             string text = item.text;
@@ -105,6 +144,34 @@ namespace web_print_agent.Service
             g.DrawString(text, new Font(fontFamily, size), System.Drawing.Brushes.Black, x, y);
         }
 
+        /// <summary>
+        /// 生成条码
+        /// </summary>
+        /// <param name="format">条码类型</param>
+        /// <param name="text">内容</param>
+        /// <param name="width">宽度</param>
+        /// <param name="height">高度</param>
+        /// <returns></returns>
+        protected Bitmap newBarcode(BarcodeFormat format, string text, int width, int height)
+        {
+            BarcodeWriter writer = new BarcodeWriter();
+            writer.Format = format;
+            QrCodeEncodingOptions options = new QrCodeEncodingOptions()
+            {
+                DisableECI = true,//设置内容编码
+                CharacterSet = "UTF-8", //设置二维码的宽度和高度
+                Width = width,
+                Height = height,
+                Margin = 1//设置二维码的边距,单位不是固定像素
+            };
+            writer.Options = options;
+            Bitmap map = writer.Write(text);
+            return map;
+        }
+
+        /// <summary>
+        /// 设置页面尺寸
+        /// </summary>
         protected void setPageSize()
         {
             string pageName = printOrder.id.ToString();
