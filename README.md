@@ -22,7 +22,7 @@
 
 ## 指令示例
 * JSON格式
-* 类型：text/qrcoe/datamatrix/barcode/line
+* 类型：text/qrcoe/datamatrix/barcode/line/image
 * 单位：毫米
 * 文字换行手动使用`\r\n`
 
