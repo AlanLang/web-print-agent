@@ -1,5 +1,4 @@
 ﻿using System;
-using Arthas.Controls.Metro;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -24,7 +23,7 @@ namespace web_print_agent
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow : Window
     {
         SocketBase socketBase;
         MySocketService mySocketServer;

@@ -36,9 +36,6 @@
     <ApplicationIcon>print.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Arthas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=fee4b65875c25912, processorArchitecture=MSIL">
-      <HintPath>..\packages\WpfUI.1.0.0\lib\Arthas.dll</HintPath>
-    </Reference>
     <Reference Include="Fleck, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fleck.1.0.3\lib\net45\Fleck.dll</HintPath>
     </Reference>
@@ -141,12 +138,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="print.ico">
+    <Content Include="print.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
